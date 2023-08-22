@@ -10,5 +10,10 @@ import { Person } from './person';
         fullName: "Anne-Lise Bois",
         age: 30,
         address: "25b rue Thiers 33700 Merignac"
+    },
+    {
+        fullName: "Ingrid Huet",
+        age: 45,
+        address: "40 rue Charles de Gaulle 75001 Paris"
     }
 ]
