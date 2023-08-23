@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { saveAs } from 'file-saver'; // https://www.npmjs.com/package/file-saver
+import { ReadingJsonService } from './readingJsonService';
 import { Person } from './person';
 import { PERSONS } from './mock-person';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -17,10 +19,13 @@ import { PERSONS } from './mock-person';
   `,
   styles: []
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   persons: Person[] = PERSONS;
 
-  constructor() {
+  constructor(private readingJsonService: ReadingJsonService) {
+  }
+
+  ngOnInit(): void {
   }
 
   save() {
