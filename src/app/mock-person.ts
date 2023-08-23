@@ -1,6 +1,6 @@
 import { Person } from './person';
 
- const PERSONS: Person[] = [
+export const PERSONS: Person[] = [
     {
         fullName: "Emmanuel Marey",
         age: 50,
