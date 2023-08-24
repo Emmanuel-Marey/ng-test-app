@@ -9,10 +9,6 @@ export class ReadingJsonService {
     private jsonURL = 'assets/sample.json';
 
     constructor(private http: HttpClient) {
-        this.getJSON().subscribe(data => {
-            console.log("ReadingJsonService");
-            console.log(data);
-        });
     }
 
     public getJSON(): Observable<any> {

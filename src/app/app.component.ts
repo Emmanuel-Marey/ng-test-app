@@ -3,7 +3,6 @@ import { saveAs } from 'file-saver'; // https://www.npmjs.com/package/file-saver
 import { ReadingJsonService } from './readingJsonService';
 import { Person } from './person';
 import { PERSONS } from './mock-person';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -26,13 +25,20 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.readingJsonService.getJSON().subscribe(
+      data => {
+        console.log("ReadingJsonService");
+        this.persons = data;
+      },
+      error => console.log(error)
+    );
   }
 
   save() {
     console.log("save");
     const myJSON = JSON.stringify(this.persons);
     console.log(myJSON);
-    var file = new File([myJSON], "c:/temp/hello world.json", {type: "text/plain;charset=utf-8"});
+    var file = new File([myJSON], "sample.json", {type: "text/plain;charset=utf-8"});
     saveAs(file);
 
     let persons = <Person[]>JSON.parse(myJSON);
