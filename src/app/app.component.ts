@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { saveAs } from 'file-saver'; // https://www.npmjs.com/package/file-saver
 import { ReadingJsonService } from './readingJsonService';
 import { Person } from './person';
-import { PERSONS } from './mock-person';
+import { PERSONS } from './mock/mock-persons';
 
 @Component({
   selector: 'app-root',
