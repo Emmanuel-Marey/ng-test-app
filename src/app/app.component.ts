@@ -1,47 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { saveAs } from 'file-saver'; // https://www.npmjs.com/package/file-saver
-import { ReadingJsonService } from './readingJsonService';
-import { Person } from './person';
-import { PERSONS } from './mock/mock-persons';
+import { Component } from '@angular/core';
+
+// https://www.ag-grid.com/javascript-data-grid/global-style-upgrading-to-v28-css/
+// https://www.ag-grid.com/javascript-data-grid/themes/
+// https://www.ag-grid.com/angular-data-grid/videos/
+// https://www.youtube.com/watch?v=_cRDVM6NlPk&list=PLsZlhayVgqNw6VHFn4j6FcJM5vLACsf0x
+// https://stackblitz.com/edit/aggrid-angular10-alignedgridoverlap-x3vnk6?file=src%2Fapp%2Fapp.module.ts
 
 @Component({
   selector: 'app-root',
-  template: `
-    <div>
-      <ul>
-        <li *ngFor="let person of persons Personne">
-          FullName: {{person.fullName}} | Age : {{person.age}} | Adresse : {{person.address}}
-        </li>
-      </ul>
-    </div>
-    <button (click)="save()">Save  disk</button>
-  `,
-  styles: []
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
-  persons: Person[] = PERSONS;
+export class AppComponent {
+  title = 'ng-test-ag-grid';
 
-  constructor(private readingJsonService: ReadingJsonService) {
-  }
+  colDefs = [
+    { headerName: 'Make', field: 'make', sortable: true, filter: true },
+    { headerName: 'Model', field: 'model', sortable: true, filter: true },
+    { headerName: 'Price', field: 'price', sortable: true, filter: true }
+  ];
 
-  ngOnInit(): void {
-    this.readingJsonService.getJSON().subscribe(
-      data => {
-        console.log("ReadingJsonService");
-        this.persons = data;
-      },
-      error => console.log(error)
-    );
-  }
+  rowData: any[] = [
+    { make: 'Toyota', model: 'Celica', price: 35000 },
+    { make: 'Ford', model: 'Mondeo', price: 32000 },
+    { make: 'Porsche', model: 'Boxster', price: 72000 },
+  ];
 
-  save() {
-    console.log("save");
-    const myJSON = JSON.stringify(this.persons);
-    console.log(myJSON);
-    var file = new File([myJSON], "sample.json", {type: "text/plain;charset=utf-8"});
-    saveAs(file);
-
-    let persons = <Person[]>JSON.parse(myJSON);
-    console.log(persons);
+  constructor() {
   }
 }
