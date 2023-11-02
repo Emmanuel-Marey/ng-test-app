@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 @Injectable({
     providedIn: 'root',
   })
-export class ReadingJsonService {
-    private jsonURL = 'assets/sample.json';
+export class CarsService {
+    private jsonURL = 'assets/cars.json';
 
     constructor(private http: HttpClient) {
     }
 
-    public getJSON(): Observable<any> {
+    public getData(): Observable<any> {
         return this.http.get(this.jsonURL);
     }
 }
